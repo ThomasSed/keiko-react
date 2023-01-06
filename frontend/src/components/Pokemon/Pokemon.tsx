@@ -10,7 +10,7 @@ export const Pokemon = ({ name, id }: Props) => {
     <div>
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
       <p>Name: {name}</p>
-      <p>Number: 7</p>
+      <p>Number: {id}</p>
     </div>
   )
 }
