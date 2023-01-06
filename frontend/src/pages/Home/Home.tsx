@@ -1,4 +1,5 @@
 import styles from "./Home.module.css"
+import { Pokemon } from "components/Pokemon"
 
 export const Home = () => {
   return (
@@ -7,9 +8,9 @@ export const Home = () => {
         <div>Bienvenue sur ton futur pokédex !</div>
         <div>Tu vas pouvoir apprendre tout ce qu'il faut sur React et attraper des pokemons !</div>
       </div>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"></img>
-      <p>Name: Carapuce</p>
-      <p>Number: 7</p>
+      <Pokemon name={"Carapuce"} id={7}></Pokemon>
+      <Pokemon name={"Carabaffe"} id={8}></Pokemon>
+      <Pokemon name={"Tortank"} id={9}></Pokemon>
     </div>
   )
 }
