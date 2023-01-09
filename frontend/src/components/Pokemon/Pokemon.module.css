@@ -1,0 +1,9 @@
+.pokemon {
+  border: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 3px;
+  flex-grow: 4; /* default 0 */
+  border-style: double;
+  display: inline-block;
+}
