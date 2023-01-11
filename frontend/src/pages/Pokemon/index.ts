@@ -1,0 +1,1 @@
+export { PokemonWithId } from "./Pokemon"
