@@ -61,7 +61,7 @@ export const Home = () => {
           pokemonList_.map(({ name, id, height, weight }) => {
             return (
               <Link to={`/${id}`} key={id}>
-                <Pokemon key={id} name={name} height={height} weight={weight} id={id} />
+                {/* <Pokemon key={id} name={name} height={height} weight={weight} id={id} /> */}
               </Link>
             )
           })

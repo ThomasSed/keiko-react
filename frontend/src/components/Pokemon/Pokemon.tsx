@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Animate } from "components/Animate"
 import styles from "./Pokemon.module.css"
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   height: number | undefined
 }
 
-export const Pokemon = ({ name, id, height, weight }: Props) => {
+const PokemonComponent = ({ name, id, height, weight }: Props) => {
   return (
     <div className={styles.pokemon}>
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
@@ -19,3 +19,5 @@ export const Pokemon = ({ name, id, height, weight }: Props) => {
     </div>
   )
 }
+
+export const Pokemon = Animate<Props>(PokemonComponent, "tada")
