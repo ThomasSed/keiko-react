@@ -18,3 +18,10 @@
   flex-wrap: wrap;
   align-items: center;
 }
+
+.erreur {
+  color: red;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}

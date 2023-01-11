@@ -1,6 +1,9 @@
 import styles from "./Home.module.css"
 import { Pokemon } from "components/Pokemon"
 import React, { useEffect } from "react"
+import { Loader } from "components/Loader"
+import { wait, waitFor } from "@testing-library/react"
+import { Link } from "react-router-dom"
 
 interface PokemonInfo {
   id: number
@@ -12,10 +15,17 @@ interface PokemonInfo {
 export const Home = () => {
   // const [filterValue, setFilterValue] = React.useState("")
   const [pokemonList_, setPokemonList] = React.useState<PokemonInfo[]>([])
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [erreur, setErreur] = React.useState("")
+
   useEffect(() => {
-    fetchPokemons().then(data => {
-      setPokemonList(data)
-    })
+    fetchPokemons()
+      .catch(err => setErreur("erreur lors du chargement des pokémons"))
+      .then(data => {
+        setPokemonList(data)
+        const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
+        sleep(500).then(() => setIsLoading(false))
+      })
   }, [])
 
   //const [pokemonList_, updatePokemonList] = React.useState<PokemonInfo[]>([])
@@ -41,9 +51,21 @@ export const Home = () => {
       </div>
       {/* <input className={styles.input} onChange={onInputChange} value={filterValue} /> */}
       <div className={styles.pokedex}>
-        {pokemonList_.map(({ name, id, height, weight }) => {
-          return <Pokemon key={id} name={name} height={height} weight={weight} id={id} />
-        })}
+        {erreur != "" ? (
+          <div className={styles.erreur}>
+            <p>{erreur}</p>
+          </div>
+        ) : isLoading ? (
+          <Loader />
+        ) : (
+          pokemonList_.map(({ name, id, height, weight }) => {
+            return (
+              <Link to={`/${id}`} key={id}>
+                <Pokemon key={id} name={name} height={height} weight={weight} id={id} />
+              </Link>
+            )
+          })
+        )}
       </div>
     </div>
   )
@@ -59,6 +81,11 @@ interface Pokemon {
 // }
 
 async function fetchPokemons() {
-  const response = await fetch("http://localhost:8000/pokemons", { headers: { accept: "application/json" } })
+  const response = await fetch("http://localhost:8000/pokemons", { headers: { accept: "application/json" } }).catch(
+    error => {
+      console.log(error)
+      throw error.message || error
+    },
+  )
   return await response.json()
 }

@@ -1,16 +1,16 @@
-import styles from "./Home.module.css"
-import pstyles from "./Pokemon.module.css"
+import { Link } from "react-router-dom"
+import styles from "./Pokemon.module.css"
 
 interface Props {
-  name: string
+  name: string | undefined
   id: number
-  weight: number
-  height: number
+  weight: number | undefined
+  height: number | undefined
 }
 
 export const Pokemon = ({ name, id, height, weight }: Props) => {
   return (
-    <div className={pstyles.pokemon}>
+    <div className={styles.pokemon}>
       <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
       <p>Name: {name}</p>
       <p>Number: {id}</p>

@@ -1,3 +1,4 @@
+import { PokemonWithId } from "./pages/Pokemon"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Root } from "./components/Root"
 
@@ -9,6 +10,7 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:id" element={<PokemonWithId />} />
         </Routes>
       </BrowserRouter>
     </Root>
